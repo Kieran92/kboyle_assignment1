@@ -54,7 +54,7 @@ Copyright © 2014 Knowledge by Experience.
 sept 26 2014 (last used) 
 
 http://theopentutorials.com/tutorials/android/listview/android-multiple-selection-listview/ sept 26 2014 (last used)
-http://www.mikeplate.com/2010/01/21/show-a-context-menu-for-long-clicks-in-an-android-listview/ 
+http://www.mikeplate.com/2010/01/21/show-a-context-menu-for-long-clicks-in-an-android-listview/ sept 19 2014
 
 sept 26 2014(last_used)
 http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application  
