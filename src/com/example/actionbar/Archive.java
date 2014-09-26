@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.view.View;
 
 public class Archive extends Activity {
+	//This is where I declare numerous variables
 	ArrayList<String> archiveItems = new ArrayList<String>();
 	ListView listview;
 	ArrayAdapter<String> adapter;
@@ -30,6 +31,7 @@ public class Archive extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//Basically here I just do a lot of set up including the action bar, startup class and i register for the context menu
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_archive);
 		// Show the Up button in the action bar.
@@ -40,6 +42,7 @@ public class Archive extends Activity {
 	
 	
 	private void findViewsById() {
+		//Again this is just a simple set up for my function I found it helpful, I took this code from the main
         listview = (ListView) findViewById(R.id.archive_list);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,archiveItems);
         archiveItems.clear();
@@ -52,6 +55,7 @@ public class Archive extends Activity {
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
+		//Action bar stuff that automatically gets written
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
@@ -66,7 +70,7 @@ public class Archive extends Activity {
 	
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
-        
+        //This is just the code that I have that creates the context menu within the archive activity
     	super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu_archive, menu);
@@ -93,7 +97,8 @@ public class Archive extends Activity {
     	
     }
   
-
+//The below code is just me going back to the main I use finish instead of NavUtils. 
+//NavUtils was deleting my previous todo entries
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -118,6 +123,10 @@ public class Archive extends Activity {
 	}
 	
 	public void delete_goal(){
+		//This is where I "delete" items from my archive
+		//really what i do is used shared preferences to save the value and then 
+		//I exit back to the main where the item is actually deleted
+		//This in itself is horrible oo programming
 		int postion_remove = position;
 		
 		removing = archiveItems.get(postion_remove).toString();
@@ -131,6 +140,9 @@ public class Archive extends Activity {
 		}
 	
 	public void unarchive(){
+		//to dearchive and item i do pretty much the same thing as befor in the sensse that 
+		//i save the file using shared preferences and send it back to the main so that I may
+		//make this item a todolist value again
 		findViewsById();
 		int itemPosition = position;
 		goal = archiveItems.get(itemPosition).toString();

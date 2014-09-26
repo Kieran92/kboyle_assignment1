@@ -70,6 +70,9 @@ public class Email extends Activity {
 	}
 	
 	private void findViewsById() {
+		//Just setting up my email class using the same method as my other classes
+		//I recieve the combo list from main and add it to the view so the user can select
+		//the tasks that they would like to email.
 		emails.clear();
 		
         listview = (ListView) findViewById(R.id.email);
@@ -97,7 +100,7 @@ public class Email extends Activity {
 		getMenuInflater().inflate(R.menu.email, menu);
 		return true;
 	}
-
+//This is where I exit the email activity nothing really speacial.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {

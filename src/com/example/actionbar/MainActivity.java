@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 //import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends Activity implements OnClickListener,Parcelable{
+	//Declaring the variables I will later use
 	public static final String DEFAULT ="N/A";
 	ArrayList<String> todo_list = new ArrayList<String>();
 	static ArrayList<String> archive_list = new ArrayList<String>();
@@ -38,12 +40,18 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	ArrayAdapter<String> adapter;
 	int position;
 	boolean backFromChild = false;
-	int todo_number;
-	int todo_complete;
-	int todo_incomplete;
-	int archive_number;
-	int archive_complete;
-	int archive_incomplete;
+	int todo_number = 0;
+	int todo_complete = 0;
+	int todo_incomplete = 0;
+	int archive_number = 0;
+	int archive_complete = 0;
+	int archive_incomplete = 0;
+	int todo_check_count = 0;
+	int todo_not_checked = 0;
+	int archived_check = 0;
+	int archived_uncheck = 0;
+	int before = 0;
+	int after = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +60,9 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		findViewsById();
 		OnClickListener listener = new OnClickListener(){
 			@Override
+			//enabling the activity to  input a string and add it to the todolist
 			public void onClick(View v){ 
+				
 				EditText edit = (EditText) findViewById(R.id.edit_message);
 				todo_list.add(edit.getText().toString());
 				edit.setText("");
@@ -60,7 +70,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 
 				}
 		};
-		
+		//registering the add button and the listview so that I can interact with the list
 		button.setOnClickListener(listener);
 		registerForContextMenu(listview);
 
@@ -70,7 +80,12 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	@Override
 	public void onResume(){
 		super.onResume();
+		//clearing the email list because it was giving me duplicates
 		email_list.clear();
+		//resetting the check count to zero so that it does not cause an duplicates of data to persist
+		todo_check_count = 0;
+		//loading either a deleted item or an unarchived item to be deleted or added to the list
+		//I uses shared preferences so that these data values may be saved and returned to the main activity
 		SharedPreferences sharedPreferences = getSharedPreferences("MyData",Context.MODE_PRIVATE);
 		String todo_item = sharedPreferences.getString("goal", DEFAULT);
 		String remove_item = sharedPreferences.getString("removal", DEFAULT);
@@ -79,7 +94,10 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 
 			}
 		else{
+			//adding a dearchived item back into the todo list
+			//I also remove the item from the archive list here and I effectively make the dearchive value null
 			todo_list.add(todo_item);
+			archive_list.remove(todo_item);
 			adapter.notifyDataSetChanged();
 			SharedPreferences.Editor editor=sharedPreferences.edit();
 			editor.putString("goal", DEFAULT);
@@ -87,10 +105,11 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 			
 			}
 		if (remove_item.equals(DEFAULT)){
-			//do nothing
+			//do nothing 
 			}
 		else
 		{
+			//I inform the user the item has been removed, and then I remove said item
 			Toast.makeText(this, "Deleted Archive Item", Toast.LENGTH_LONG).show();
 			archive_list.remove(remove_item);
 			adapter.notifyDataSetChanged();
@@ -101,6 +120,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		}
 		}
 	private void findViewsById() {
+		//This is just a simple set up that I used, I found it very helpful
         listview = (ListView) findViewById(R.id.list);
         button = (Button) findViewById(R.id.button_add);
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,todo_list);
@@ -109,6 +129,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
     }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
+    	//This is just the code for the very simple context menu that I use to delete and to archive todo items
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
@@ -120,6 +141,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	
 	
     public boolean onContextItemSelected(MenuItem item){
+    	//This is the setup for when I either delete or archive an item
     	AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
     	position = info.position;
     	switch (item.getItemId()){
@@ -148,6 +170,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	}
 	
 	public void delete_goal(){
+		//This is how I delete an item in the todo list
 		int postion_remove = position;
 		todo_list.remove(postion_remove);
 		adapter.notifyDataSetChanged();
@@ -155,6 +178,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		}
 	
 	public void archive_thang(){
+		//I archive items by getting the position and adding it to a list that I will eventually send to the archive
 		findViewsById();
 		int itemPosition = position;
 		String goal = todo_list.get(itemPosition).toString();
@@ -164,18 +188,21 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState){
+		//THis was really some experimental code that I kept because it stored the info when I pressed the home button
 		super.onRestoreInstanceState(savedInstanceState);
 		todo_list = savedInstanceState.getStringArrayList("todoSaveParcelable");
 	}
 
 	
 	public void bootArchive(){
+		//I use intents to start my archive as well as to send the list of activities that need archived
 		Intent boot_intent = new Intent(this,Archive.class);
 		boot_intent.putStringArrayListExtra("item", archive_list);
 		startActivityForResult(boot_intent,1);
 		}
 	
 	public void bootEmail(){
+		//When I use the email i first combine both my todo and archive lists and then send them to my email activity
 		Intent email_intent = new Intent(this,Email.class);
 		email_list.addAll(todo_list);
 		email_list.addAll(archive_list);
@@ -184,18 +211,36 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		}
 	
 	public void bootStats(){
+		//this is where i send my statisticsover to stats 
+		//first i find all the checked values
+		SparseBooleanArray check = listview.getCheckedItemPositions();
+		for (int count = 0; count<check.size();count++){
+			int position = check.keyAt(count);
+			if (check.valueAt(position)){
+				todo_check_count++;
+			}
+		}
+		//next i get the amount of todo items and the number  of the archive items	using sieOf()
+		todo_number = todo_list.size();
+		archive_number = archive_list.size();
+		String new_todo_number = String.valueOf(todo_number);
+		String new_archive_number = String.valueOf(archive_number);
+		String new_todo_complete = String.valueOf(todo_check_count);
+		String new_todo_incomplete = String.valueOf(todo_number-todo_check_count);
 		Intent stats_intent = new Intent(this,UsageStats.class);
-		stats_intent.putExtra("total_todo","1");//todo_number);
-		stats_intent.putExtra("completed_todo",todo_complete);
-		stats_intent.putExtra("incomplete_todo",todo_incomplete);
-		stats_intent.putExtra("total_archive",archive_number);
+		stats_intent.putExtra("total_todo",new_todo_number);//todo_number);
+		stats_intent.putExtra("completed_todo",new_todo_complete);
+		stats_intent.putExtra("incomplete_todo",new_todo_incomplete);
+		stats_intent.putExtra("total_archive",new_archive_number);
 		stats_intent.putExtra("completed_archive",archive_complete);
 		stats_intent.putExtra("incomplete_archive",archive_incomplete);
-		
-		startActivity(stats_intent);;
+		//I then start the activity
+		startActivity(stats_intent);
 		}
 	
 	public boolean onOptionsItemSelected(MenuItem item){
+		
+		//These are just the codes for my action bar
 		switch (item.getItemId()){
 
 			case R.id.action_archive:
@@ -212,6 +257,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 				return super.onOptionsItemSelected(item);
 				}
 		}
+	///These two functions came with parcelable, which I was going to implement but I decided that it was probably an awful idea
 	@Override
 	public int describeContents() {
 		// TODO Auto-generated method stub
