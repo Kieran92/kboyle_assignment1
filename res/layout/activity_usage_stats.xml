@@ -52,7 +52,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/action_todo"
+        android:text="@string/action_archive"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView

@@ -83,6 +83,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 				EditText edit = (EditText) findViewById(R.id.edit_message);
 				todo_list.add(edit.getText().toString());
 				edit.setText("");
+				
 				adapter.notifyDataSetChanged();
 
 				}
@@ -203,7 +204,10 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 				
 			}
 		}
-		check.delete(position);
+		if (check.valueAt(position+1)==false){
+			check.delete(position);
+			check.delete(position+1);
+		}
 		
 		int postion_remove = position;
 		todo_list.remove(postion_remove);
@@ -226,7 +230,11 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 				
 			}
 		}
-		check.delete(position);
+		if (check.valueAt(position+1)==false){
+			check.delete(position);
+			check.delete(position+1);
+		}
+
 		int itemPosition = position;
 		String goal = todo_list.get(itemPosition).toString();
 		
@@ -272,12 +280,21 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		//next i get the amount of todo items and the number  of the archive items	using sizeOf()
 		todo_number = todo_list.size();
 		archive_number = archive_list.size();
+		int tempcalc = archive_number-archived_check;
+		if (tempcalc < 0){
+			tempcalc = 0;
+		}
+		if (archived_check > archive_number){
+			archived_check = archived_check - archive_number;
+		}
 		String new_archive_complete = String.valueOf(archived_check);
-		String new_archive_incomplete = String.valueOf(archive_number-archived_check);
+		String new_archive_incomplete = String.valueOf(tempcalc);
 		String new_todo_number = String.valueOf(todo_number);
 		String new_archive_number = String.valueOf(archive_number);
 		String new_todo_complete = String.valueOf(todo_check_count);
 		String new_todo_incomplete = String.valueOf(todo_number-todo_check_count);
+		
+		
 		Intent stats_intent = new Intent(this,UsageStats.class);
 		stats_intent.putExtra("total_todo",new_todo_number);//todo_number);
 		stats_intent.putExtra("completed_todo",new_todo_complete);
