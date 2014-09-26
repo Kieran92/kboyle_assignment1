@@ -19,9 +19,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class Email extends Activity {
+	//Here I am just declaring things that I will eventually use and making variable declarations
 	ArrayList<String> emails = new ArrayList<String>();
 	Button send;
-	
 	ListView listview;
 	String deliverable = "Your Selections:\n";
 	String temp;
@@ -32,6 +32,7 @@ public class Email extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_email);
 		// Show the Up button in the action bar.
+		//I
 		emails.clear();
 		setupActionBar();
 		findViewsById();

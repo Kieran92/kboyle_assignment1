@@ -179,7 +179,17 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	
 	public void archive_thang(){
 		//I archive items by getting the position and adding it to a list that I will eventually send to the archive
+		
 		findViewsById();
+		SparseBooleanArray check = listview.getCheckedItemPositions();
+		for (int count = 0; count<check.size();count++){
+			int position = check.keyAt(count);
+			if (check.valueAt(position)){
+				//todo_check_count--;
+				archived_check++;
+				
+			}
+		}
 		int itemPosition = position;
 		String goal = todo_list.get(itemPosition).toString();
 		archive_list.add(goal);
@@ -188,7 +198,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState){
-		//THis was really some experimental code that I kept because it stored the info when I pressed the home button
+		//This was really some experimental code that I kept because it stored the info when I pressed the home button
 		super.onRestoreInstanceState(savedInstanceState);
 		todo_list = savedInstanceState.getStringArrayList("todoSaveParcelable");
 	}
@@ -211,7 +221,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		}
 	
 	public void bootStats(){
-		//this is where i send my statisticsover to stats 
+		//this is where i send my statistics over to stats 
 		//first i find all the checked values
 		SparseBooleanArray check = listview.getCheckedItemPositions();
 		for (int count = 0; count<check.size();count++){
@@ -220,9 +230,11 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 				todo_check_count++;
 			}
 		}
-		//next i get the amount of todo items and the number  of the archive items	using sieOf()
+		//next i get the amount of todo items and the number  of the archive items	using sizeOf()
 		todo_number = todo_list.size();
 		archive_number = archive_list.size();
+		String new_archive_complete = String.valueOf(archived_check);
+		String new_archive_incomplete = String.valueOf(archive_number-archived_check);
 		String new_todo_number = String.valueOf(todo_number);
 		String new_archive_number = String.valueOf(archive_number);
 		String new_todo_complete = String.valueOf(todo_check_count);
@@ -232,8 +244,8 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		stats_intent.putExtra("completed_todo",new_todo_complete);
 		stats_intent.putExtra("incomplete_todo",new_todo_incomplete);
 		stats_intent.putExtra("total_archive",new_archive_number);
-		stats_intent.putExtra("completed_archive",archive_complete);
-		stats_intent.putExtra("incomplete_archive",archive_incomplete);
+		stats_intent.putExtra("completed_archive",new_archive_complete);
+		stats_intent.putExtra("incomplete_archive",new_archive_incomplete);
 		//I then start the activity
 		startActivity(stats_intent);
 		}

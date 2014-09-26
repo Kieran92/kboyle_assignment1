@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Build;
 
 public class UsageStats extends Activity {
+	//Declaring some of the values that I will use later on
 	String allTodos;
 	String completedTodos;
 	String incompleteTodos;
@@ -26,29 +27,30 @@ public class UsageStats extends Activity {
 		setContentView(R.layout.activity_usage_stats);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		//creating the link between user interface and the users code
 		TextView totalTodoDisplay = new TextView(this);
 		totalTodoDisplay = (TextView)findViewById(R.id.textView3);
 		TextView totalCompletedTodoDisplay = (TextView)findViewById(R.id.textView5);
 		TextView totalUncompletedTodoDisplay = (TextView)findViewById(R.id.textView7);
 		TextView totalArchiveDisplay = (TextView)findViewById(R.id.textView10);
-//		TextView totalArchiveCompleteDisplay = (TextView)findViewById(R.id.textView12);
-//		TextView totalArchiveIncompleteDisplay = (TextView)findViewById(R.id.textView14);
+		TextView totalArchiveCompleteDisplay = (TextView)findViewById(R.id.textView12);
+		TextView totalArchiveIncompleteDisplay = (TextView)findViewById(R.id.textView14);
 		Intent intent = getIntent();
-		
+		//recieving the intents for the various statistics
 		String allTodos = intent.getStringExtra("total_todo");
 		String completedTodos = intent.getStringExtra("completed_todo");
 		String incompleteTodos = intent.getStringExtra("incomplete_todo");
 		String allArchived = intent.getStringExtra("total_archive"); 
-//		String completedArchived = intent.getStringExtra("completed_archive");
-//		String incompleteArchived = intent.getStringExtra("incomplete_archive");
+		String completedArchived = intent.getStringExtra("completed_archive");
+		String incompleteArchived = intent.getStringExtra("incomplete_archive");
 		//Toast.makeText(this, allTodos, Toast.LENGTH_LONG).show();
-		
+		//displaying the statistics
 		totalTodoDisplay.setText(allTodos);
 		totalCompletedTodoDisplay.setText(completedTodos);
 		totalUncompletedTodoDisplay.setText(incompleteTodos);
 		totalArchiveDisplay.setText(allArchived);
-//		totalArchiveCompleteDisplay.setText(completedArchived);
-//		totalArchiveIncompleteDisplay.setText(incompleteArchived);
+		totalArchiveCompleteDisplay.setText(completedArchived);
+		totalArchiveIncompleteDisplay.setText(incompleteArchived);
 		
 
 //	
