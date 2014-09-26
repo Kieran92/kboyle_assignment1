@@ -1,6 +1,7 @@
 kboyle_assignment1
 ==================
 Readme CMPUT 301 Assignment 1
+Readme CMPUT 301 Assignment 1
 
 Kieran Boyle
 
@@ -18,29 +19,57 @@ Finally for my statistics I calculate them in my main and send them via intent i
 
  Resources I used:
 
-http://www.youtube.com/watch?v=tLKkLusLWOE sept 19 2014 
-http://wptrafficanalyzer.in/blog/deleting-selected-items-from-listview-in-android/ sept 19 2014 
-http://stackoverflow.com/questions/2558591/remove-listview-items-in-android  sept 19 2014 
-http://stackoverflow.com/questions/3772751/get-row-position-in-oncreatecontextmenu  sept 19 2014 
-http://stackoverflow.com/questions/4487911/the-constructor-intentnew-view-onclicklistener-classdrinkstwitter-is-un sept 21 2014 
-http://stackoverflow.com/questions/22182888/actionbar-up-button-destroys-parent-activity-back-does-not sept 22 2014 
-http://stackoverflow.com/questions/20491764/returning-data-result-to-parent-activity-using-intents sept 23 2014
-http://www.youtube.com/watch?v=1xQSK772rPs sept 23 2014
+http://www.youtube.com/watch?v=tLKkLusLWOE 
+slidenerd
+sept 19 2014 
 
-http://wptrafficanalyzer.in/blog/deleting-selected-items-from-listview-in-android/ sept 26 2014 (last used) 
+http://stackoverflow.com/questions/2558591/remove-listview-items-in-android  
+esharp
+sept 19 2014 
+
+http://stackoverflow.com/questions/3772751/get-row-position-in-oncreatecontextmenu  
+mbaird
+sept 19 2014 
+
+http://stackoverflow.com/questions/4487911/the-constructor-intentnew-view-onclicklistener-classdrinkstwitter-is-un 
+Falmarri
+
+sept 21 2014 
+http://stackoverflow.com/questions/22182888/actionbar-up-button-destroys-parent-activity-back-does-not 
+Aashir
+sept 22 2014 
+
+http://stackoverflow.com/questions/20491764/returning-data-result-to-parent-activity-using-intents
+AndroidHacker
+HpTerm 
+sept 23 2014
+
+http://www.youtube.com/watch?v=1xQSK772rPs 
+slidenerd
+sept 23 2014
+
+http://wptrafficanalyzer.in/blog/deleting-selected-items-from-listview-in-android/ 
+George Mathew 
+Copyright © 2014 Knowledge by Experience.
+sept 26 2014 (last used) 
+
 http://theopentutorials.com/tutorials/android/listview/android-multiple-selection-listview/ sept 26 2014 (last used)
-http://www.mikeplate.com/2010/01/21/show-a-context-menu-for-long-clicks-in-an-android-listview/ sept 26 2014(last_used)
-http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application  sept 26 2014
+http://www.mikeplate.com/2010/01/21/show-a-context-menu-for-long-clicks-in-an-android-listview/ 
 
-Abran Hindles various class notes and videos:
+sept 26 2014(last_used)
+http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application  
+fiXedd
+sept 26 2014
+
+Abram Hindle’s various class notes and videos:
 https://eclass.srv.ualberta.ca/course/view.php?id=19130 various times
-Student Picker for Android: 1 Storyboarding an Android Application http://youtu.be/5PPD0ncJU1g 
-Student Picker for Android: 2 Laying out the UI screens http://youtu.be/VKVYUXNuDDg
-Student Picker for Android: 3 Developing and Testing the Model http://youtu.be/k9ZNbsc0Qgo
-Student Picker for Android: 4 Navigation between Activities http://youtu.be/fxjIA4HIruU
-Student Picker for Android: 5 Controllers and adding students http://youtu.be/uLnoI7mbuEo
-
-
+Student Picker for Android: 1 Storyboarding an Android Application http://youtu.be/5PPD0ncJU1g sept 15 2014
+Student Picker for Android: 2 Laying out the UI screens 
+http://youtu.be/VKVYUXNuDDgs sept 11 2014
+Student Picker for Android: 3 Developing and Testing the Model http://youtu.be/k9ZNbsc0Qgo sept 17
+Student Picker for Android: 4 Navigation between Activities 
+http://youtu.be/fxjIA4HIruU sept 19 2014
+Student Picker for Android: 5 Controllers and adding students http://youtu.be/uLnoI7mbuEo sept18 2014
 
 Licences:
 //   kboyle_todo a simple todo list application

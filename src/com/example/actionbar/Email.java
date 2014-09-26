@@ -69,6 +69,9 @@ public class Email extends Activity {
 					
 					
 				}
+//				http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application  
+//				fiXedd
+//				sept 26 2014
 				Intent  email = new Intent(Intent.ACTION_SEND);
 				email.setType("message/rfc822");
 				email.putExtra(Intent.EXTRA_TEXT,deliverable);

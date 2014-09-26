@@ -102,6 +102,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		email_list.clear();
 		//resetting the check count to zero so that it does not cause an duplicates of data to persist
 		todo_check_count = 0;
+		archived_check = 0;
 		//loading either a deleted item or an unarchived item to be deleted or added to the list
 		//I uses shared preferences so that these data values may be saved and returned to the main activity
 		//http://stackoverflow.com/questions/22182888/actionbar-up-button-destroys-parent-activity-back-does-not sept 22 2014
@@ -219,13 +220,12 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		//I archive items by getting the position and adding it to a list that I will eventually send to the archive
 		
 		//findViewsById();
+		//http://wptrafficanalyzer.in/blog/deleting-selected-items-from-listview-in-android/ 
 		SparseBooleanArray check = listview.getCheckedItemPositions();
 		for (int count = 0; count<=check.size();count++){
 			int position = check.keyAt(count);
 			if (check.valueAt(position)){
 				//todo_check_count--;
-				
-				
 				archived_check++;
 				
 			}
