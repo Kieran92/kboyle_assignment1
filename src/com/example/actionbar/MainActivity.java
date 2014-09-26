@@ -1,3 +1,18 @@
+//   kboyle_todo a simple todo list application
+//   Copyright 2014 Kieran Boyle
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+
 package com.example.actionbar;
 
 import java.util.ArrayList;
@@ -62,7 +77,9 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 			@Override
 			//enabling the activity to  input a string and add it to the todolist
 			public void onClick(View v){ 
-				
+//				http://wptrafficanalyzer.in/blog/deleting-selected-items-from-listview-in-android/ sept 26 2014 (last used)
+//				http://theopentutorials.com/tutorials/android/listview/android-multiple-selection-listview/ sept 26 2014 (last used)
+//				
 				EditText edit = (EditText) findViewById(R.id.edit_message);
 				todo_list.add(edit.getText().toString());
 				edit.setText("");
@@ -86,6 +103,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		todo_check_count = 0;
 		//loading either a deleted item or an unarchived item to be deleted or added to the list
 		//I uses shared preferences so that these data values may be saved and returned to the main activity
+		//http://stackoverflow.com/questions/22182888/actionbar-up-button-destroys-parent-activity-back-does-not sept 22 2014
 		SharedPreferences sharedPreferences = getSharedPreferences("MyData",Context.MODE_PRIVATE);
 		String todo_item = sharedPreferences.getString("goal", DEFAULT);
 		String remove_item = sharedPreferences.getString("removal", DEFAULT);
@@ -96,6 +114,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		else{
 			//adding a dearchived item back into the todo list
 			//I also remove the item from the archive list here and I effectively make the dearchive value null
+			//http://stackoverflow.com/questions/2558591/remove-listview-items-in-android  sept 19 2014
 			todo_list.add(todo_item);
 			archive_list.remove(todo_item);
 			adapter.notifyDataSetChanged();
@@ -121,6 +140,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		}
 	private void findViewsById() {
 		//This is just a simple set up that I used, I found it very helpful
+		//		http://theopentutorials.com/tutorials/android/listview/android-multiple-selection-listview/ sept 26 2014 (last used)
         listview = (ListView) findViewById(R.id.list);
         button = (Button) findViewById(R.id.button_add);
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,todo_list);
@@ -129,6 +149,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
     }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
+    	
     	//This is just the code for the very simple context menu that I use to delete and to archive todo items
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
@@ -182,7 +203,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		
 		findViewsById();
 		SparseBooleanArray check = listview.getCheckedItemPositions();
-		for (int count = 0; count<check.size();count++){
+		for (int count = 0; count<=check.size();count++){
 			int position = check.keyAt(count);
 			if (check.valueAt(position)){
 				//todo_check_count--;
@@ -192,8 +213,10 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		}
 		int itemPosition = position;
 		String goal = todo_list.get(itemPosition).toString();
-		archive_list.add(goal);
+
 		todo_list.remove(position);
+		adapter.notifyDataSetChanged();
+		archive_list.add(goal);
 		}
 
 	@Override

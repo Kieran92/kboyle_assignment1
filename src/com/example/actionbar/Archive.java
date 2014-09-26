@@ -1,3 +1,17 @@
+//   kboyle_todo a simple todo list application
+//   Copyright 2014 Kieran Boyle
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
 package com.example.actionbar;
 //http://stackoverflow.com/questions/20491764/returning-data-result-to-parent-activity-using-intents sept 23 2014
 import java.util.ArrayList;
@@ -143,6 +157,8 @@ public class Archive extends Activity {
 		//to dearchive and item i do pretty much the same thing as befor in the sensse that 
 		//i save the file using shared preferences and send it back to the main so that I may
 		//make this item a todolist value again
+		//http://stackoverflow.com/questions/22182888/actionbar-up-button-destroys-parent-activity-back-does-not sept 22 2014
+
 		findViewsById();
 		int itemPosition = position;
 		goal = archiveItems.get(itemPosition).toString();
