@@ -39,19 +39,19 @@ public final class R {
         public static final int item2=0x7f08001b;
         public static final int list=0x7f080006;
         public static final int textView1=0x7f080007;
-        public static final int textView10=0x7f080011;
-        public static final int textView11=0x7f080012;
-        public static final int textView12=0x7f080010;
-        public static final int textView13=0x7f080013;
-        public static final int textView14=0x7f080014;
+        public static final int textView10=0x7f08000d;
+        public static final int textView11=0x7f08000e;
+        public static final int textView12=0x7f08000f;
+        public static final int textView13=0x7f080010;
+        public static final int textView14=0x7f080013;
         public static final int textView2=0x7f080008;
         public static final int textView3=0x7f08000b;
-        public static final int textView4=0x7f08000a;
-        public static final int textView5=0x7f080009;
-        public static final int textView6=0x7f08000c;
-        public static final int textView7=0x7f08000e;
-        public static final int textView8=0x7f08000d;
-        public static final int textView9=0x7f08000f;
+        public static final int textView4=0x7f08000c;
+        public static final int textView5=0x7f08000a;
+        public static final int textView6=0x7f080009;
+        public static final int textView7=0x7f080011;
+        public static final int textView8=0x7f080012;
+        public static final int textView9=0x7f080014;
     }
     public static final class layout {
         public static final int activity_archive=0x7f030000;

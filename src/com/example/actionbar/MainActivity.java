@@ -38,6 +38,12 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	ArrayAdapter<String> adapter;
 	int position;
 	boolean backFromChild = false;
+	int todo_number;
+	int todo_complete;
+	int todo_incomplete;
+	int archive_number;
+	int archive_complete;
+	int archive_incomplete;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -179,6 +185,13 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	
 	public void bootStats(){
 		Intent stats_intent = new Intent(this,UsageStats.class);
+		stats_intent.putExtra("total_todo","1");//todo_number);
+		stats_intent.putExtra("completed_todo",todo_complete);
+		stats_intent.putExtra("incomplete_todo",todo_incomplete);
+		stats_intent.putExtra("total_archive",archive_number);
+		stats_intent.putExtra("completed_archive",archive_complete);
+		stats_intent.putExtra("incomplete_archive",archive_incomplete);
+		
 		startActivity(stats_intent);;
 		}
 	

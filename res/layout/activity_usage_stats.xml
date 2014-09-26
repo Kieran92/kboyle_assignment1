@@ -7,6 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".UsageStats" >
+    
 
     <TextView
         android:id="@+id/textView1"
@@ -25,33 +26,6 @@
         android:layout_centerVertical="true"
         android:text="@string/stats_archive"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="45dp"
-        android:text="@string/stats_total_todo" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="40dp"
-        android:text="@string/stats_todo_completed" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="18dp"
-        android:text="@string/todo_incomplete" />
     
 	<TextView
         android:id="@+id/textView6"
@@ -63,54 +37,57 @@
         android:text="@string/stats_archived_total" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="23dp"
-        android:text="@string/stats_archived_unfinished" />
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:text="@string/stats_total_todo" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView8"
-        android:layout_alignLeft="@+id/textView8"
-        android:layout_marginBottom="52dp"
-        android:text="@string/stats_archived_completed" />
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_marginBottom="37dp"
+        android:text="@string/todo_incomplete" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView9"
-        android:layout_below="@+id/textView6"
-        android:text="TextView" />
+        android:layout_above="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_marginBottom="42dp"
+        android:text="@string/stats_todo_completed" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="TextView" />
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_marginTop="14dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="TextView" />
+        android:layout_above="@+id/textView2"
+        android:layout_alignRight="@+id/textView10"
+        android:layout_marginBottom="15dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_below="@+id/textView6"
+
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textView13"
@@ -118,16 +95,43 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView12"
         android:layout_alignTop="@+id/textView7"
-        android:layout_marginTop="18dp"
-        android:text="TextView" />
+        android:layout_marginTop="16dp"
+
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="58dp"
+        android:text="@string/stats_archived_unfinished" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView13"
-        android:layout_alignTop="@+id/textView8"
-        android:layout_marginTop="18dp"
-        android:text="TextView" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_below="@+id/textView12"
+        android:layout_marginTop="16dp"
+        android:text="@string/stats_archived_completed" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_toRightOf="@+id/textView1" />
 
 </RelativeLayout>

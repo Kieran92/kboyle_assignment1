@@ -2,27 +2,29 @@ package com.example.actionbar;
 
 import java.util.ArrayList;
 
-import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-//import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-//import android.support.v4.app.NavUtils;
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.os.Build;
 
 public class Email extends Activity {
 	ArrayList<String> emails = new ArrayList<String>();
 	Button send;
+	
 	ListView listview;
-	String deliverable;
+	String deliverable = "Your Selections:\n";
+	String temp;
 	ArrayAdapter<String> adapter;
 
 	@Override
@@ -36,8 +38,25 @@ public class Email extends Activity {
 		OnClickListener listener = new OnClickListener(){
 			@Override
 			public void onClick(View v){ 
+				SparseBooleanArray check = listview.getCheckedItemPositions();
+				//ArrayList<String> items = new ArrayList<String>();
+				for (int count = 0; count<check.size();count++){
+					int position = check.keyAt(count);
+					if (check.valueAt(position)){
+						temp = adapter.getItem(position).toString();
+						Log.d("item adding",temp);
+						temp = temp+"\n";
+						deliverable = deliverable + temp;
+						Log.d("currentstring",deliverable);
+					
+					}
+					
+					
+					
+				}
 				Intent  email = new Intent(Intent.ACTION_SEND);
 				email.setType("message/rfc822");
+				email.putExtra(Intent.EXTRA_TEXT,deliverable);
 				try{
 						startActivity(Intent.createChooser(email, "Send mail..."));
 				}catch(android.content.ActivityNotFoundException ex){
