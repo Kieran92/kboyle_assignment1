@@ -192,6 +192,19 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	
 	public void delete_goal(){
 		//This is how I delete an item in the todo list
+		SparseBooleanArray check = listview.getCheckedItemPositions();
+		for (int count = 0; count<=check.size();count++){
+			int position = check.keyAt(count);
+			if (check.valueAt(position)){
+				//todo_check_count--;
+				
+				
+				//archived_check++;
+				
+			}
+		}
+		check.delete(position);
+		
 		int postion_remove = position;
 		todo_list.remove(postion_remove);
 		adapter.notifyDataSetChanged();
@@ -201,19 +214,22 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 	public void archive_thang(){
 		//I archive items by getting the position and adding it to a list that I will eventually send to the archive
 		
-		findViewsById();
+		//findViewsById();
 		SparseBooleanArray check = listview.getCheckedItemPositions();
 		for (int count = 0; count<=check.size();count++){
 			int position = check.keyAt(count);
 			if (check.valueAt(position)){
 				//todo_check_count--;
+				
+				
 				archived_check++;
 				
 			}
 		}
+		check.delete(position);
 		int itemPosition = position;
 		String goal = todo_list.get(itemPosition).toString();
-
+		
 		todo_list.remove(position);
 		adapter.notifyDataSetChanged();
 		archive_list.add(goal);
@@ -278,7 +294,7 @@ public class MainActivity extends Activity implements OnClickListener,Parcelable
 		//These are just the codes for my action bar
 		switch (item.getItemId()){
 
-			case R.id.action_archive:
+case R.id.action_archive:
 				bootArchive();
 				return true;
 		
